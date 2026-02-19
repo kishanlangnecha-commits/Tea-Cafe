@@ -1,0 +1,28 @@
+:root {
+  --tea-primary: #6F4E37;
+  /* Coffee/Tea Brown */
+  --tea-secondary: #C2B280;
+  /* Sand */
+  --tea-accent: #A52A2A;
+  /* Auburn */
+  --tea-bg: #F5F5DC;
+  /* Beige */
+  --tea-light: #FAF9F6;
+  --tea-dark: #2B1B17;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--tea-bg);
+  color: var(--tea-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
