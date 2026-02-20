@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Navbar, Nav, Row, Col, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { Coffee, Leaf, Wind, Award, ArrowRight, Instagram, Facebook, Twitter, MapPin, Clock, Phone, UserCog, User, Calendar, ShieldCheck } from 'lucide-react';
 import '../styles/home.css';
 
@@ -26,7 +27,7 @@ const Home = () => {
             {/* Navbar */}
             <Navbar expand="lg" fixed="top" className={`glass-nav ${scrolled ? 'shadow-sm' : ''}`}>
                 <Container>
-                    <Navbar.Brand href="/" className="d-flex align-items-center gap-2" style={{ color: 'var(--tea-primary)', fontWeight: 'bold', fontSize: '1.5rem' }}>
+                    <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2" style={{ color: 'var(--tea-primary)', fontWeight: 'bold', fontSize: '1.5rem' }}>
                         <Coffee size={32} />
                         Tea Cafe
                     </Navbar.Brand>
@@ -37,7 +38,7 @@ const Home = () => {
                             <Nav.Link href="#about">About</Nav.Link>
                             <Nav.Link href="#menu">Menu</Nav.Link>
                             <Nav.Link href="#contact">Contact</Nav.Link>
-                            <Button variant="outline-primary" href="/login" className="ms-lg-3 rounded-pill px-4" style={{ borderColor: 'var(--tea-primary)', color: 'var(--tea-primary)' }}>
+                            <Button as={Link} to="/login" variant="outline-primary" className="ms-lg-3 rounded-pill px-4" style={{ borderColor: 'var(--tea-primary)', color: 'var(--tea-primary)' }}>
                                 Login
                             </Button>
                         </Nav>
@@ -50,7 +51,7 @@ const Home = () => {
                 <Container>
                     <Row className="justify-content-center g-3">
                         <Col xs={6} md={3}>
-                            <Button variant="light" href="/staff" className="access-btn">
+                            <Button as={Link} to="/staff" variant="light" className="access-btn">
                                 <UserCog size={20} />
                                 <span>Staff Access</span>
                             </Button>
@@ -76,6 +77,7 @@ const Home = () => {
                     </Row>
                 </Container>
             </div>
+
 
             {/* Features Section */}
             <section className="features-section">

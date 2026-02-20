@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { ClipboardList, ArrowLeft } from 'lucide-react';
 import '../styles/staff.css';
 
@@ -14,12 +15,14 @@ const StaffView = () => {
             <div className="staff-header text-center">
                 <Button
                     variant="link"
-                    href="/"
+                    as={Link}
+                    to="/"
                     className="back-btn text-white position-absolute start-0 ms-3 mt-2"
                 >
                     <ArrowLeft size={24} />
                 </Button>
                 <h2 className="header-title m-0 py-3">Kitchen Staff View</h2>
+
 
                 {/* Tabs */}
                 <div className="staff-tabs-container">
