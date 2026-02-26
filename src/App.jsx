@@ -4,6 +4,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import StaffView from './components/StaffView';
 import ClientView from './components/ClientView';
+import Booking from './components/Booking';
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/staff" element={<StaffView />} />
         <Route path="/client" element={<ClientView />} />
+        <Route path="/book-table" element={<Booking />} />
       </Routes>
     </Router>
   );

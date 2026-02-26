@@ -17,9 +17,9 @@ const Home = () => {
 
     const categories = [
         { name: "Green Tea", img: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-        { name: "Black Tea", img: "https://images.unsplash.com/photo-1594631252845-29fc4586c567?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        { name: "Black Tea", img: "/black-tea.jpg" },
         { name: "Herbal", img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-        { name: "Oolong", img: "https://images.unsplash.com/photo-1563911892149-1456a0033104?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" }
+        { name: "Oolong", img: "/oolong-tea.jpg" }
     ];
 
     return (
@@ -63,7 +63,7 @@ const Home = () => {
                             </Button>
                         </Col>
                         <Col xs={6} md={3}>
-                            <Button as={Link} to="/client" variant="light" className="access-btn">
+                            <Button as={Link} to="/book-table" variant="light" className="access-btn">
                                 <Calendar size={20} />
                                 <span>Book Table</span>
                             </Button>
@@ -173,7 +173,7 @@ const Home = () => {
                                     <MapPin size={18} /> 123 Tea Garden St, Brew City
                                 </li>
                                 <li className="mb-3 d-flex align-items-center gap-2">
-                                    <Phone size={18} /> +1 (555) TEA-CAFE
+                                    <Phone size={18} /> +91 1234567890  TEA-CAFE
                                 </li>
                                 <li className="mb-3 d-flex align-items-center gap-2">
                                     <Clock size={18} /> Mon - Sun: 8am - 10pm
@@ -184,14 +184,14 @@ const Home = () => {
                             <h5>Newsletter</h5>
                             <p className="small opacity-75 mt-3">Subscribe to get the latest tea recipes and special offers.</p>
                             <div className="d-flex gap-2">
-                                <input type="email" placeholder="Email" className="form-control bg-transparent border-secondary text-white" />
-                                <Button className="btn-primary-tea px-3">Join</Button>
+                                {/* <input type="email" placeholder="Email" className="form-control bg-transparent border-secondary text-white" />
+                                <Button className="btn-primary-tea px-3">Join</Button> */}
                             </div>
                         </Col>
                     </Row>
                     <hr className="opacity-25" />
                     <div className="text-center pt-3 opacity-50 small">
-                        &copy; 2024 Tea Cafe. All rights reserved. Designed for tea lovers.
+                        &copy; 2026 Tea Cafe. All rights reserved. Designed for tea lovers.
                     </div>
                 </Container>
             </footer>
