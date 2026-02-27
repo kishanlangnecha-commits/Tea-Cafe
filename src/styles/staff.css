@@ -266,7 +266,49 @@
     opacity: 1 !important;
 }
 
-/* 📱 Specific adjustments for Tablet & Mobile */
+/* 📱 Responsive Visibility Logic */
+/* Default View: Desktop & Tablet (> 576px) */
+.v-desktop-tablet {
+    display: block !important;
+}
+
+.v-desktop-tablet-inline {
+    display: inline !important;
+}
+
+.v-desktop-tablet-flex {
+    display: flex !important;
+}
+
+.v-mobile,
+.v-mobile-inline {
+    display: none !important;
+}
+
+/* Mobile View (≤ 576px) */
+@media (max-width: 576px) {
+
+    .v-desktop-tablet,
+    .v-desktop-tablet-inline,
+    .v-desktop-tablet-flex {
+        display: none !important;
+    }
+
+    .v-mobile {
+        display: block !important;
+    }
+
+    .v-mobile-inline {
+        display: inline !important;
+    }
+
+    /* Ensure the grid keeps its display type */
+    .mobile-category-grid.v-mobile {
+        display: grid !important;
+    }
+}
+
+/* Header Adjustments */
 @media (max-width: 768px) {
     .header-title {
         padding: 12px 0;

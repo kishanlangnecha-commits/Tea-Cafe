@@ -29,7 +29,7 @@ const StaffView = () => {
                     variant="link"
                     as={Link}
                     to="/"
-                    className={`back-btn text-white position-absolute start-0 ms-3 mt-2 ${showOrderView ? 'd-none d-md-block' : ''}`}
+                    className={`back-btn text-white position-absolute start-0 ms-3 mt-2 ${showOrderView ? 'v-desktop-tablet' : ''}`}
                 >
                     <ArrowLeft size={24} />
                 </Button>
@@ -38,7 +38,7 @@ const StaffView = () => {
                 {showOrderView && (
                     <Button
                         variant="link"
-                        className="mobile-back-btn text-white position-absolute start-0 ms-3 mt-2 d-md-none"
+                        className="mobile-back-btn text-white position-absolute start-0 ms-3 mt-2 v-mobile"
                         onClick={() => setShowOrderView(false)}
                     >
                         <ArrowLeft size={24} />
@@ -46,15 +46,15 @@ const StaffView = () => {
                 )}
 
                 <h2 className="header-title m-0 py-3">
-                    <span className="d-none d-md-inline">Kitchen Staff View</span>
-                    <span className="d-md-none">
+                    <span className="v-desktop-tablet-inline">Kitchen Staff View</span>
+                    <span className="v-mobile-inline">
                         {showOrderView ? `${activeTab} Orders` : 'Kitchen Staff View'}
                     </span>
                 </h2>
 
 
-                {/* Tabs - Hidden on mobile, only visible on desktop */}
-                <div className="staff-tabs-container d-none d-md-block">
+                {/* Tabs - Guaranteed visibility on Desktop and Tablet (> 576px) */}
+                <div className="staff-tabs-container v-desktop-tablet">
                     <Nav className="justify-content-center staff-tabs flex-nowrap w-100">
                         {tabs.map((tab) => (
                             <Nav.Item key={tab.name}>
@@ -77,7 +77,7 @@ const StaffView = () => {
             <div className="staff-content-area">
                 {!showOrderView && (
                     /* Mobile Category Grid - Only visible on small screens when not viewing orders */
-                    <div className="mobile-category-grid d-md-none">
+                    <div className="mobile-category-grid v-mobile">
                         {tabs.map((tab) => (
                             <div
                                 key={tab.name}
@@ -94,8 +94,8 @@ const StaffView = () => {
                     </div>
                 )}
 
-                {/* Orders View - Shown when showOrderView is true (mobile) OR always on desktop (md and up) */}
-                <div className={`orders-view w-100 flex-column align-items-center justify-content-center h-100 ${showOrderView ? 'd-flex' : 'd-none d-md-flex'}`}>
+                {/* Orders View */}
+                <div className={`orders-view w-100 flex-column align-items-center justify-content-center h-100 ${showOrderView ? 'd-flex' : 'v-desktop-tablet-flex'}`}>
                     <div className="empty-state text-center">
                         <ClipboardList size={100} className="empty-icon mb-4" />
                         <p className="empty-text">No {activeTab} orders</p>
