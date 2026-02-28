@@ -69,7 +69,7 @@ const Home = () => {
                             </Button>
                         </Col>
                         <Col xs={6} md={3}>
-                            <Button variant="light" className="access-btn">
+                            <Button as={Link} to="/owner" variant="light" className="access-btn">
                                 <ShieldCheck size={20} />
                                 <span>Owner Access</span>
                             </Button>

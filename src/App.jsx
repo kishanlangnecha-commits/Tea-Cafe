@@ -5,6 +5,7 @@ import SignUp from './components/SignUp';
 import StaffView from './components/StaffView';
 import ClientView from './components/ClientView';
 import Booking from './components/Booking';
+import OwnerAccess from './components/OwnerAccess';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/staff" element={<StaffView />} />
         <Route path="/client" element={<ClientView />} />
         <Route path="/book-table" element={<Booking />} />
+        <Route path="/owner" element={<OwnerAccess />} />
       </Routes>
     </Router>
   );

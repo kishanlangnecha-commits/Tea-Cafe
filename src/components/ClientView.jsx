@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { Coffee, ArrowLeft, CheckCircle, Clock, MapPin, Star } from 'lucide-react';
+import { Coffee, ArrowLeft, Table, ChevronDown, Edit3, Receipt } from 'lucide-react';
 import '../styles/client.css';
 
 const ClientView = () => {
-    const [selectedTable, setSelectedTable] = useState(null);
-    const [isBooked, setIsBooked] = useState(false);
     const navigate = useNavigate();
+    const [selectedTable, setSelectedTable] = useState('');
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [viewingOrders, setViewingOrders] = useState(false);
 
-    const tables = Array.from({ length: 12 }, (_, i) => ({
-        id: i + 1,
-        status: i % 4 === 0 ? 'occupied' : 'available',
-        capacity: i % 3 === 0 ? 4 : 2,
-    }));
-
-    const handleTableSelect = (tableId) => {
-        setSelectedTable(tableId);
-    };
-
-    const handleConfirmBooking = () => {
-        if (selectedTable) {
-            setIsBooked(true);
-            // Simulate API call or local storage update
-            setTimeout(() => {
-                // Redirect to menu or home after a delay
-                // navigate('/');
-            }, 3000);
-        }
-    };
+    const tables = ['Table 1', 'Table 2', 'Table 3', 'Table 4', 'Table 5'];
 
     return (
         <div className="client-view-container">
@@ -51,97 +33,66 @@ const ClientView = () => {
             </header>
 
             <main className="client-main-content">
-                <Container>
-                    {!isBooked ? (
-                        <div className="booking-section">
-                            <div className="text-center mb-5">
-                                <h1 className="display-5 fw-bold mb-2">Reserve Your Table</h1>
-                                <p className="text-muted">Select a table to begin your exceptional tea experience.</p>
-                            </div>
+                <Container className="d-flex flex-column align-items-center">
+                    <div className="table-selector-card animate-fade-in">
+                        <h2 className="selector-title">Select Your Table Number</h2>
 
-                            <div className="table-map-container">
-                                <div className="table-grid-scroll">
-                                    <div className="table-grid-client">
-                                        {tables.map((table) => (
-                                            <div
-                                                key={table.id}
-                                                className={`table-card-client ${table.status} ${selectedTable === table.id ? 'active' : ''}`}
-                                                onClick={() => table.status === 'available' && handleTableSelect(table.id)}
-                                            >
-                                                <div className="table-icon-wrapper">
-                                                    <div className="table-surface"></div>
-                                                    <div className={`chair top ${table.capacity >= 4 ? 'show' : ''}`}></div>
-                                                    <div className="chair right"></div>
-                                                    <div className={`chair bottom ${table.capacity >= 4 ? 'show' : ''}`}></div>
-                                                    <div className="chair left"></div>
+                        <div className="selector-row">
+                            <div className="custom-table-dropdown">
+                                <span className="dropdown-label">Table Number</span>
+                                <div
+                                    className={`dropdown-select ${showDropdown ? 'open' : ''}`}
+                                    onClick={() => setShowDropdown(!showDropdown)}
+                                >
+                                    <Table size={20} className="icon-left" />
+                                    <span>{selectedTable || 'Select table'}</span>
+                                    <ChevronDown size={20} className="icon-right" />
+
+                                    {showDropdown && (
+                                        <div className="dropdown-menu-list">
+                                            {tables.map(table => (
+                                                <div
+                                                    key={table}
+                                                    className="dropdown-item-client"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setSelectedTable(table);
+                                                        setShowDropdown(false);
+                                                    }}
+                                                >
+                                                    {table}
                                                 </div>
-                                                <div className="table-info-client">
-                                                    <span className="table-num">Table {table.id}</span>
-                                                    <span className="table-cap text-muted">{table.capacity} Persons</span>
-                                                </div>
-                                                <div className="status-badge">
-                                                    {table.status === 'occupied' ? 'Occupied' : 'Select'}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
-                            <div className="booking-footer shadow-lg">
-                                <div className="d-flex align-items-center justify-content-between w-100 max-width-600 mx-auto">
-                                    <div className="selection-preview">
-                                        {selectedTable ? (
-                                            <>
-                                                <span className="label">Selected</span>
-                                                <span className="value">Table #{selectedTable}</span>
-                                            </>
-                                        ) : (
-                                            <span className="placeholder">Pick a table</span>
-                                        )}
-                                    </div>
-                                    <Button
-                                        className="confirm-booking-btn"
-                                        disabled={!selectedTable}
-                                        onClick={handleConfirmBooking}
-                                    >
-                                        Confirm Reservation
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="success-screen text-center animate-fade-in">
-                            <div className="success-icon-wrapper mb-4">
-                                <CheckCircle size={80} color="#28a745" />
-                            </div>
-                            <h1 className="display-4 fw-bold mb-3">Reservation Confirmed!</h1>
-                            <p className="lead mb-5">Your table <strong>#{selectedTable}</strong> is ready for you. Welcome to Tea Cafe.</p>
-
-                            <Row className="justify-content-center g-4 mb-5">
-                                <Col md={4}>
-                                    <Card className="info-card-client h-100">
-                                        <Card.Body>
-                                            <Clock className="mb-3 text-primary" />
-                                            <h5>Validity</h5>
-                                            <p className="text-muted small">Your reservation is held for 15 minutes.</p>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                                <Col md={4}>
-                                    <Card className="info-card-client h-100">
-                                        <Card.Body>
-                                            <Star className="mb-3 text-warning" />
-                                            <h5>Next Step</h5>
-                                            <p className="text-muted small">Browse our menu and place your order.</p>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                            </Row>
-
-                            <Button as={Link} to="/" className="btn-premium btn-primary-tea px-5">
-                                Back to Home
+                            <Button className="btn-view-orders">
+                                View Orders
                             </Button>
+                        </div>
+
+                        <div className="or-divider">OR</div>
+
+                        <div className="manual-entry-box">
+                            <Edit3 size={20} className="icon-left" />
+                            <input
+                                type="text"
+                                placeholder="Manual Table Entry"
+                                className="manual-input"
+                                value={selectedTable.startsWith('Table') ? '' : selectedTable}
+                                onChange={(e) => setSelectedTable(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
+                    {!viewingOrders && (
+                        <div className="empty-orders-state text-center mt-5 opacity-75">
+                            <div className="receipt-icon-wrapper mb-3">
+                                <Receipt size={100} strokeWidth={1} />
+                            </div>
+                            <p className="empty-state-text">Enter your table number to view orders</p>
                         </div>
                     )}
                 </Container>
