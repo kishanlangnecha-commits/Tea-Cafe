@@ -79,14 +79,27 @@ export const SettingsProvider = ({ children }) => {
         document.documentElement.style.setProperty('--tea-primary', theme.primary);
         document.documentElement.style.setProperty('--tea-secondary', theme.secondary);
 
-        const darken = (hex) => {
+        const hexToRgb = (hex) => {
             const r = parseInt(hex.slice(1, 3), 16);
             const g = parseInt(hex.slice(3, 5), 16);
             const b = parseInt(hex.slice(5, 7), 16);
+            return `${r}, ${g}, ${b}`;
+        };
+
+        const darken = (hex) => {
+            const [r, g, b] = hexToRgb(hex).split(', ').map(n => parseInt(n));
             return `rgb(${Math.max(0, r - 30)}, ${Math.max(0, g - 30)}, ${Math.max(0, b - 30)})`;
         };
+
+        const primaryRgb = hexToRgb(theme.primary);
+        const secondaryRgb = hexToRgb(theme.secondary);
         const darkPrimary = darken(theme.primary);
+        const darkSecondary = darken(theme.secondary);
+
+        document.documentElement.style.setProperty('--tea-primary-rgb', primaryRgb);
+        document.documentElement.style.setProperty('--tea-secondary-rgb', secondaryRgb);
         document.documentElement.style.setProperty('--tea-primary-dark', darkPrimary);
+        document.documentElement.style.setProperty('--tea-secondary-dark', darkSecondary);
 
         if (darkMode) {
             document.documentElement.setAttribute('data-theme', 'dark');

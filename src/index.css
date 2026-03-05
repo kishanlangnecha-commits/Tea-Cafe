@@ -61,9 +61,20 @@
   color: white !important;
 }
 
+[data-theme='dark'] .scanner-special-btn:hover,
+[data-theme='dark'] .menu-special-btn:hover {
+  background-color: var(--tea-primary-dark) !important;
+  color: white !important;
+}
+
 [data-theme='dark'] .qr-special-btn {
   background-color: var(--tea-secondary) !important;
   color: #121212 !important;
+}
+
+[data-theme='dark'] .qr-special-btn:hover {
+  background-color: var(--tea-secondary-dark) !important;
+  color: white !important;
 }
 
 [data-theme='dark'] .feature-icon-wrapper,
@@ -102,9 +113,22 @@ body {
 }
 
 .btn-primary-tea:hover {
-  background-color: var(--tea-dark) !important;
+  background-color: var(--tea-primary-dark) !important;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-outline-tea {
+  color: var(--tea-primary) !important;
+  border-color: var(--tea-primary) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-outline-tea:hover {
+  background-color: var(--tea-primary) !important;
+  color: #fff !important;
+  transform: scale(1.05);
 }
 
 /* Dark Mode Bootstrap Overrides */

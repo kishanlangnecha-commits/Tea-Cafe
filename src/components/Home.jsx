@@ -142,7 +142,7 @@ const Home = () => {
                             <Nav.Link className="d-flex align-items-center gap-1 nav-settings-link" onClick={() => setShowSettings(true)} style={{ cursor: 'pointer' }}>
                                 <Settings size={18} /> {t.settings}
                             </Nav.Link>
-                            <Button as={Link} to="/login" variant="outline-primary" className="ms-lg-3 rounded-pill px-4" style={{ borderColor: 'var(--tea-primary)', color: 'var(--tea-primary)' }}>
+                            <Button as={Link} to="/login" variant="outline-primary" className="ms-lg-3 rounded-pill px-4 btn-outline-tea">
                                 {t.login}
                             </Button>
                         </Nav>
