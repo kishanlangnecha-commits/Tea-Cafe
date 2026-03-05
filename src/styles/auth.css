@@ -14,7 +14,7 @@
 }
 
 .auth-card {
-    background: rgba(255, 255, 255, 0.92);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
     width: 100%;
     max-width: 400px;
@@ -22,6 +22,7 @@
     overflow: hidden;
     animation: slideUpFade 1s cubic-bezier(0.165, 0.84, 0.44, 1);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid var(--glass-border) !important;
 }
 
 @keyframes slideUpFade {
@@ -97,15 +98,16 @@
 .custom-input {
     border-radius: 12px;
     padding: 14px 18px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--glass-border);
+    background-color: var(--tea-light);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     font-size: 0.95rem;
+    color: var(--tea-text);
 }
 
 .custom-input:focus {
     border-color: var(--tea-primary);
-    background-color: #fff;
+    background-color: var(--tea-card-bg);
     box-shadow: 0 4px 12px rgba(111, 78, 55, 0.1);
     transform: translateY(-1px);
 }
@@ -128,8 +130,8 @@
 }
 
 .input-icon-text {
-    background-color: rgba(255, 255, 255, 0.8) !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    background-color: var(--tea-light) !important;
+    border: 1px solid var(--glass-border) !important;
     border-right: none !important;
     border-radius: 12px 0 0 12px !important;
     color: var(--tea-primary) !important;
@@ -138,9 +140,9 @@
 }
 
 .password-toggle-btn {
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid var(--glass-border) !important;
     border-left: none !important;
-    background-color: rgba(255, 255, 255, 0.8) !important;
+    background-color: var(--tea-light) !important;
     color: var(--tea-primary) !important;
     border-radius: 0 12px 12px 0 !important;
     padding: 0 15px !important;
@@ -151,8 +153,8 @@
 }
 
 .password-toggle-btn:hover {
-    background-color: #fff !important;
-    color: var(--tea-dark) !important;
+    background-color: var(--tea-card-bg) !important;
+    color: var(--tea-primary) !important;
 }
 
 .password-toggle-btn:focus {
@@ -192,7 +194,7 @@
 
 .form-label {
     font-weight: 500;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 .form-group-animated {

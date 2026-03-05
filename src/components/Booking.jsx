@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Armchair, Star, Keyboard, CheckCircle } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Armchair, Star, Keyboard, CheckCircle, Settings } from 'lucide-react';
+import { useSettings } from '../context/SettingsContext';
+import SettingsModal from './SettingsModal';
 import '../styles/booking.css';
 
 const Booking = () => {
+    const { t } = useSettings();
     const navigate = useNavigate();
     const [selectedDate, setSelectedDate] = useState(23);
     const [selectedTable, setSelectedTable] = useState('A1');
@@ -17,6 +20,7 @@ const Booking = () => {
     const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false);
     const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
     const [isBooked, setIsBooked] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     const timeSlots = [
         "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
@@ -133,8 +137,17 @@ const Booking = () => {
     return (
         <div className="booking-page">
             <header className="booking-header">
-                <ArrowLeft className="back-icon" size={24} onClick={() => navigate(-1)} />
-                <h1>Book a Table</h1>
+                <div className="d-flex align-items-center gap-3">
+                    <ArrowLeft className="back-icon" size={24} onClick={() => navigate(-1)} />
+                    <h1>{t.bookTitle}</h1>
+                </div>
+                <Button
+                    variant="link"
+                    onClick={() => setShowSettings(true)}
+                    className="settings-btn text-white p-0"
+                >
+                    <Settings className="header-icon" />
+                </Button>
             </header>
 
             <Container className={`booking-container ${isBooked ? 'success-view' : ''}`}>
@@ -168,10 +181,10 @@ const Booking = () => {
 
                         {/* Time Selection Section */}
                         <div className="booking-card">
-                            <h2 className="booking-title">Select Time</h2>
+                            <h2 className="booking-title">{t.selectTime}</h2>
                             <div className="time-selection-row">
                                 <div className="time-field">
-                                    <label>Start Time</label>
+                                    <label>{t.startTime}</label>
                                     <div className="time-input-box" onClick={() => handleTimeBoxClick('start')}>
                                         <Clock size={16} color="#6F4E37" className="d-none d-lg-block" />
                                         <input
@@ -195,7 +208,7 @@ const Booking = () => {
                                     </div>
                                 </div>
                                 <div className="time-field">
-                                    <label>End Time</label>
+                                    <label>{t.endTime}</label>
                                     <div className="time-input-box" onClick={() => handleTimeBoxClick('end')}>
                                         <Clock size={16} color="#6F4E37" className="d-none d-lg-block" />
                                         <input
@@ -221,7 +234,7 @@ const Booking = () => {
                             </div>
                             <div className="time-selection-row mt-3">
                                 <div className="time-field">
-                                    <label>Number of Guests</label>
+                                    <label>{t.guestsNum}</label>
                                     <div
                                         className={`custom-dropdown-container ${isGuestDropdownOpen ? 'open' : ''}`}
                                         onClick={() => {
@@ -254,7 +267,7 @@ const Booking = () => {
                                     </div>
                                 </div>
                                 <div className="time-field">
-                                    <label>Booking Category (Unique Type)</label>
+                                    <label>{t.bookCat}</label>
                                     <div
                                         className={`custom-dropdown-container ${isTypeDropdownOpen ? 'open' : ''}`}
                                         onClick={() => {
@@ -294,9 +307,9 @@ const Booking = () => {
 
                         {/* Table Selection Section */}
                         <div className="booking-card">
-                            <h2 className="booking-title">Select Table</h2>
+                            <h2 className="booking-title">{t.selTab}</h2>
 
-                            <span className="table-status-label">Available Tables</span>
+                            <span className="table-status-label">{t.availableTabs}</span>
                             <div className="tables-grid">
                                 {tables.map(table => (
                                     <div
@@ -311,7 +324,7 @@ const Booking = () => {
                             </div>
 
                             <div className="booked-section">
-                                <span className="table-status-label">Booked Tables</span>
+                                <span className="table-status-label">{t.bookedTabs}</span>
                                 <p className="booked-placeholder">All tables are available for selected time.</p>
                             </div>
                         </div>
@@ -321,7 +334,7 @@ const Booking = () => {
                                 className="btn-primary-tea px-5 py-3 rounded-pill fw-bold shadow-lg"
                                 onClick={() => setIsBooked(true)}
                             >
-                                Confirm Reservation
+                                {t.confirmRes}
                             </Button>
                         </div>
                     </>
@@ -331,8 +344,8 @@ const Booking = () => {
                             <div className="success-icon-badge mb-4">
                                 <CheckCircle size={80} color="#28a745" />
                             </div>
-                            <h2 className="display-6 fw-bold mb-3">Table Reserved!</h2>
-                            <p className="text-muted mb-5">Your reservation at Tea Cafe has been confirmed. We look forward to serving you.</p>
+                            <h2 className="display-6 fw-bold mb-3">{t.resConfirm}</h2>
+                            <p className="text-muted mb-5">{t.resSub}</p>
 
                             <div className="summary-details p-4 rounded-4 mb-5">
                                 <div className="summary-row">
@@ -362,14 +375,14 @@ const Booking = () => {
                                     to="/"
                                     className="btn-primary-tea py-3 rounded-pill fw-bold"
                                 >
-                                    Back to Home
+                                    {t.backHome}
                                 </Button>
                                 <Button
                                     variant="outline-secondary"
                                     className="py-3 rounded-pill border-0"
                                     onClick={() => setIsBooked(false)}
                                 >
-                                    Edit Reservation
+                                    {t.editRes}
                                 </Button>
                             </div>
                         </div>
@@ -476,6 +489,7 @@ const Booking = () => {
                     </div>
                 </div>
             )}
+            <SettingsModal show={showSettings} onHide={() => setShowSettings(false)} />
         </div>
     );
 };

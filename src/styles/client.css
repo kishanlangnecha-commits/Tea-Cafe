@@ -1,10 +1,9 @@
 .client-view-container {
     min-height: 100vh;
     background-color: var(--tea-bg);
-    /* Beige background */
     display: flex;
     flex-direction: column;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     font-family: 'Poppins', sans-serif;
 }
 
@@ -32,7 +31,7 @@
 .client-main-content {
     flex: 1;
     padding: clamp(20px, 5vh, 60px) 20px;
-    background: linear-gradient(rgba(245, 245, 220, 0.8), rgba(245, 245, 220, 0.8)),
+    background: linear-gradient(var(--glass-bg), var(--glass-bg)),
         url('https://images.unsplash.com/photo-1544787210-2211dca21665?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-attachment: fixed;
@@ -43,25 +42,23 @@
 
 /* Table Selector Card */
 .table-selector-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--tea-card-bg);
     backdrop-filter: blur(15px);
     width: 95%;
     max-width: 550px;
-    /* Slightly wider for better desktop presence */
     min-width: 320px;
     padding: clamp(25px, 6vw, 45px);
     border-radius: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--glass-border);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
 }
 
 .selector-title {
     font-size: clamp(1.4rem, 4vw, 1.8rem);
-    /* Responsive title size */
     font-weight: 800;
     margin-bottom: clamp(20px, 5vw, 40px);
-    color: var(--tea-dark);
+    color: var(--tea-text);
     text-align: center;
     letter-spacing: -0.5px;
 }
@@ -85,7 +82,7 @@
     position: absolute;
     top: -10px;
     left: 15px;
-    background-color: white;
+    background-color: var(--tea-card-bg);
     padding: 0 8px;
     font-size: 0.8rem;
     color: var(--tea-primary);
@@ -96,8 +93,8 @@
 .dropdown-select {
     display: flex;
     align-items: center;
-    background-color: #FFFFFF;
-    border: 1.5px solid rgba(111, 78, 55, 0.2);
+    background-color: var(--tea-card-bg);
+    border: 1.5px solid var(--glass-border);
     border-radius: 12px;
     height: 56px;
     padding: 0 15px;
@@ -127,7 +124,7 @@
     top: 105%;
     left: 0;
     right: 0;
-    background-color: #FFFFFF;
+    background-color: var(--tea-card-bg);
     border-radius: 12px;
     overflow: hidden;
     z-index: 100;
@@ -138,7 +135,7 @@
 .dropdown-item-client {
     padding: 15px;
     transition: background 0.2s;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 .dropdown-item-client:hover {
@@ -179,8 +176,8 @@
 .manual-entry-box {
     display: flex;
     align-items: center;
-    background-color: #FFFFFF;
-    border: 1.5px solid rgba(0, 0, 0, 0.05);
+    background-color: var(--tea-card-bg);
+    border: 1.5px solid var(--glass-border);
     border-radius: 16px;
     height: 64px;
     padding: 0 20px;
@@ -217,7 +214,7 @@
 .empty-state-text {
     font-size: 1.2rem;
     font-weight: 500;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     opacity: 0.6;
 }
 

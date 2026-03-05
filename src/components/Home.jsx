@@ -1,18 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Container, Navbar, Nav, Row, Col, Button, Card, Modal, Form, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Coffee, Leaf, Wind, Award, ArrowRight, Instagram, Facebook, Twitter, MapPin, Clock, Phone, UserCog, User, Calendar, ShieldCheck, Scan, X, Camera, QrCode, Check, ShoppingBag, Plus, Minus, Trash2 } from 'lucide-react';
+import { Coffee, Leaf, Wind, Award, ArrowRight, Instagram, Facebook, Twitter, MapPin, Clock, Phone, UserCog, User, Calendar, ShieldCheck, Scan, X, Camera, QrCode, Check, ShoppingBag, Plus, Minus, Trash2, Settings } from 'lucide-react';
 import { QRCodeCanvas } from 'qrcode.react';
+import { useSettings } from '../context/SettingsContext';
+import SettingsModal from './SettingsModal';
 import '../styles/home.css';
 
 const Home = () => {
+    const { language, t } = useSettings();
     const [scrolled, setScrolled] = useState(false);
     const [showScanner, setShowScanner] = useState(false);
     const [showQRMenu, setShowQRMenu] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [selectedTable, setSelectedTable] = useState('');
     const [selectedOrderTable, setSelectedOrderTable] = useState('');
+    const [showSettings, setShowSettings] = useState(false);
     const [generatedQR, setGeneratedQR] = useState(null);
+
     const [cart, setCart] = useState([]);
     const [stream, setStream] = useState(null);
     const videoRef = useRef(null);
@@ -133,12 +138,12 @@ const Home = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#about">About</Nav.Link>
-                            <Nav.Link href="#menu">Menu</Nav.Link>
-                            <Nav.Link href="#contact">Contact</Nav.Link>
+                            <Nav.Link href="#contact">{t.contact}</Nav.Link>
+                            <Nav.Link className="d-flex align-items-center gap-1 nav-settings-link" onClick={() => setShowSettings(true)} style={{ cursor: 'pointer' }}>
+                                <Settings size={18} /> {t.settings}
+                            </Nav.Link>
                             <Button as={Link} to="/login" variant="outline-primary" className="ms-lg-3 rounded-pill px-4" style={{ borderColor: 'var(--tea-primary)', color: 'var(--tea-primary)' }}>
-                                Login
+                                {t.login}
                             </Button>
                         </Nav>
                     </Navbar.Collapse>
@@ -152,25 +157,25 @@ const Home = () => {
                         <Col xs={6} md={3}>
                             <Button as={Link} to="/staff" variant="light" className="access-btn">
                                 <UserCog size={20} />
-                                <span>Staff Access</span>
+                                <span>{t.staff}</span>
                             </Button>
                         </Col>
                         <Col xs={6} md={3}>
                             <Button as={Link} to="/client" variant="light" className="access-btn">
                                 <User size={20} />
-                                <span>Client Access</span>
+                                <span>{t.client}</span>
                             </Button>
                         </Col>
                         <Col xs={6} md={3}>
                             <Button as={Link} to="/book-table" variant="light" className="access-btn">
                                 <Calendar size={20} />
-                                <span>Book Table</span>
+                                <span>{t.book}</span>
                             </Button>
                         </Col>
                         <Col xs={6} md={3}>
                             <Button as={Link} to="/owner" variant="light" className="access-btn">
                                 <ShieldCheck size={20} />
-                                <span>Owner Access</span>
+                                <span>{t.owner}</span>
                             </Button>
                         </Col>
                     </Row>
@@ -179,7 +184,7 @@ const Home = () => {
                         <Col xs={12} md={6}>
                             <Button onClick={() => setShowMenu(true)} variant="light" className="access-btn menu-special-btn">
                                 <ShoppingBag size={24} />
-                                <span>Order Menu</span>
+                                <span>{t.orderMenu}</span>
                             </Button>
                         </Col>
                     </Row>
@@ -188,13 +193,13 @@ const Home = () => {
                         <Col xs={6} md={3}>
                             <Button onClick={startCamera} variant="light" className="access-btn scanner-special-btn">
                                 <Scan size={24} />
-                                <span>Scanner</span>
+                                <span>{t.scanner}</span>
                             </Button>
                         </Col>
                         <Col xs={6} md={3}>
                             <Button onClick={handleGenerateQR} variant="light" className="access-btn qr-special-btn">
                                 <QrCode size={24} />
-                                <span>QR Code</span>
+                                <span>{t.qrCode}</span>
                             </Button>
                         </Col>
                     </Row>
@@ -376,13 +381,17 @@ const Home = () => {
                     </Row>
                 </Modal.Body>
             </Modal>
+            {/* Settings Modal Component */}
+            <SettingsModal show={showSettings} onHide={() => setShowSettings(false)} />
+
+
 
 
             {/* Features Section */}
             <section className="features-section">
                 <Container>
                     <div className="section-header">
-                        <h2>Why Choose Tea Cafe?</h2>
+                        <h2>{t.chooseTea}</h2>
                         <div className="underline"></div>
                     </div>
                     <Row className="g-4">
@@ -391,8 +400,8 @@ const Home = () => {
                                 <div className="feature-icon-wrapper">
                                     <Leaf size={35} />
                                 </div>
-                                <h3>Pure Organic</h3>
-                                <p className="text-muted">We only use 100% organic tea leaves sourced directly from certified sustainable farms.</p>
+                                <h3>{t.organic}</h3>
+                                <p className="text-muted">{t.organicText}</p>
                             </div>
                         </Col>
                         <Col md={4}>
@@ -400,8 +409,8 @@ const Home = () => {
                                 <div className="feature-icon-wrapper">
                                     <Wind size={35} />
                                 </div>
-                                <h3>Freshly Brewed</h3>
-                                <p className="text-muted">Every cup is brewed to perfection at the ideal temperature to preserve the natural essence.</p>
+                                <h3>{t.brewed}</h3>
+                                <p className="text-muted">{t.brewedText}</p>
                             </div>
                         </Col>
                         <Col md={4}>
@@ -409,8 +418,8 @@ const Home = () => {
                                 <div className="feature-icon-wrapper">
                                     <Award size={35} />
                                 </div>
-                                <h3>Award Winning</h3>
-                                <p className="text-muted">Voted the best tea experience for three consecutive years by the Brewing Association.</p>
+                                <h3>{t.award}</h3>
+                                <p className="text-muted">{t.awardText}</p>
                             </div>
                         </Col>
                     </Row>
@@ -421,7 +430,7 @@ const Home = () => {
             <section className="category-section">
                 <Container>
                     <div className="section-header">
-                        <h2>Explore Categories</h2>
+                        <h2>{t.explore}</h2>
                         <div className="underline"></div>
                     </div>
                     <Row className="text-center">
