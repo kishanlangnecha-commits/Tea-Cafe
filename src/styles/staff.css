@@ -97,7 +97,7 @@
 .staff-content-area {
     flex: 1;
     padding: clamp(15px, 4vw, 40px);
-    background: linear-gradient(rgba(244, 246, 239, 0.92), rgba(244, 246, 239, 0.95)),
+    background: linear-gradient(var(--glass-bg), var(--glass-bg)),
         url('https://images.unsplash.com/photo-1597481499750-3e6b22637e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
@@ -213,7 +213,7 @@
 }
 
 .empty-state {
-    background: rgba(255, 255, 255, 0.98);
+    background: var(--tea-card-bg);
     padding: clamp(2rem, 8vw, 4rem);
     border-radius: clamp(20px, 5vw, 40px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
@@ -249,7 +249,7 @@
 .empty-text {
     font-size: clamp(1rem, 3vw, 1.3rem);
     font-weight: 700;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     margin-top: 20px;
 }
 

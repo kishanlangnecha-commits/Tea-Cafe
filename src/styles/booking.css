@@ -1,7 +1,7 @@
 .booking-page {
     background-color: var(--tea-bg);
     min-height: 100vh;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     padding-bottom: 50px;
 }
 
@@ -48,19 +48,19 @@
 }
 
 .booking-card {
-    background: white;
+    background: var(--tea-card-bg);
     border-radius: 20px;
     padding: 30px;
     margin-bottom: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(111, 78, 55, 0.05);
+    border: 1px solid var(--glass-border);
 }
 
 .booking-title {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 20px;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 /* Calendar Styles */
@@ -102,7 +102,7 @@
     width: 40px;
     margin: 0 auto;
     border-radius: 50%;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 .calendar-day:hover:not(.empty) {
@@ -182,8 +182,8 @@
 /* Custom Dropdown Styling */
 .custom-dropdown-container {
     position: relative;
-    background: white;
-    border: 2px solid var(--tea-bg);
+    background: var(--tea-card-bg);
+    border: 2px solid var(--glass-border);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -215,7 +215,7 @@
 .dropdown-trigger span {
     font-size: 0.95rem;
     font-weight: 500;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     flex: 1;
 }
 
@@ -236,7 +236,7 @@
     top: calc(100% + 8px);
     left: 0;
     right: 0;
-    background: white;
+    background: var(--tea-card-bg);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     z-index: 1000;
@@ -263,7 +263,7 @@
     padding: 10px 15px;
     border-radius: 8px;
     font-size: 0.9rem;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     transition: all 0.2s ease;
 }
 
@@ -311,10 +311,10 @@
 }
 
 .success-card {
-    background: white;
+    background: var(--tea-card-bg);
     border-radius: 30px;
     padding: 50px 40px;
-    border: 1px solid rgba(111, 78, 55, 0.05);
+    border: 1px solid var(--glass-border);
 }
 
 .success-icon-badge {
@@ -363,7 +363,7 @@
 
 .summary-val {
     font-size: 1rem;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     font-weight: 700;
 }
 
@@ -427,11 +427,11 @@
 }
 
 .picker-modal {
-    background: #fff;
+    background: var(--tea-card-bg);
     width: 310px;
     border-radius: 12px;
     padding: 24px;
-    color: #333;
+    color: var(--tea-text);
     box-shadow: 0 24px 38px rgba(0, 0, 0, 0.14);
 }
 
@@ -461,7 +461,7 @@
     justify-content: center;
     font-size: 3.5rem;
     font-weight: 400;
-    color: #212121;
+    color: var(--tea-text);
     cursor: pointer;
 }
 
@@ -473,7 +473,7 @@
 .time-separator {
     font-size: 3rem;
     font-weight: 400;
-    color: #212121;
+    color: var(--tea-text);
 }
 
 .period-toggle {
@@ -511,7 +511,7 @@
 .clock-dial {
     width: 230px;
     height: 230px;
-    background: #eeeeee;
+    background: var(--tea-light);
     border-radius: 50%;
     position: relative;
     cursor: pointer;
@@ -525,7 +525,7 @@
     align-items: center;
     justify-content: center;
     font-size: 0.9rem;
-    color: #212121;
+    color: var(--tea-text);
     z-index: 2;
     transition: color 0.2s;
     cursor: pointer;
@@ -639,7 +639,7 @@
     gap: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 .table-btn:hover {

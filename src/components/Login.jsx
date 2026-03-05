@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, InputGroup } from 'react-bootstrap';
-import { Coffee, LogIn, UserPlus, Eye, EyeOff, Mail, Lock } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Coffee, LogIn, UserPlus, Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSettings } from '../context/SettingsContext';
 import '../styles/auth.css';
 
 const Login = () => {
+    const { t } = useSettings();
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
     return (
@@ -15,18 +18,21 @@ const Login = () => {
                         <Card className="auth-card shadow-lg border-0">
                             <Card.Body className="p-5">
                                 <div className="text-center mb-4">
+                                    <Button variant="link" onClick={() => navigate('/')} className="position-absolute start-0 top-0 mt-3 ms-3 p-0 text-muted">
+                                        <ArrowLeft size={20} />
+                                    </Button>
                                     <div className="brand-icon mb-3">
                                         <Coffee size={40} className="tea-icon" />
                                     </div>
                                     <h2 className="brand-name">Tea Cafe</h2>
-                                    <p className="text-muted mb-2">Login to enjoy your tea</p>
+                                    <p className="text-muted mb-2">{t.loginTitle}</p>
                                     <hr className="short-line" />
                                 </div>
 
                                 <Form>
                                     <div className="form-group-animated delay-1">
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                                            <Form.Label>Email Address</Form.Label>
+                                            <Form.Label>{t.email}</Form.Label>
                                             <InputGroup className="custom-input-group">
                                                 <InputGroup.Text className="input-icon-text">
                                                     <Mail size={18} />
@@ -42,7 +48,7 @@ const Login = () => {
 
                                     <div className="form-group-animated delay-2">
                                         <Form.Group className="mb-4" controlId="formBasicPassword">
-                                            <Form.Label>Password</Form.Label>
+                                            <Form.Label>{t.password}</Form.Label>
                                             <InputGroup className="custom-input-group">
                                                 <InputGroup.Text className="input-icon-text">
                                                     <Lock size={18} />
@@ -65,14 +71,14 @@ const Login = () => {
 
                                     <div className="d-grid gap-2 form-group-animated delay-3">
                                         <Button variant="primary" type="submit" className="btn-tea py-2">
-                                            <LogIn size={18} className="me-2" /> Login
+                                            <LogIn size={18} className="me-2" /> {t.login}
                                         </Button>
                                     </div>
                                 </Form>
 
                                 <div className="text-center mt-4 form-group-animated delay-4">
-                                    <p className="mb-0">Don't have an account?
-                                        <Link to="/signup" className="ms-2 signup-link">Sign Up</Link>
+                                    <p className="mb-0">{t.noAccount}
+                                        <Link to="/signup" className="ms-2 signup-link">{t.signUp}</Link>
                                     </p>
                                 </div>
                             </Card.Body>

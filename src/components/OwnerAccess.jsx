@@ -1,33 +1,37 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, BarChart2, Home, CheckCircle2, ClipboardList, XCircle, IndianRupee, Calendar, Columns, Grid, LayoutDashboard, UtensilsCrossed, Table, Ticket, MessageSquareWarning, Upload, Download, RotateCcw, Printer, Receipt, Eye, ChevronRight, FileText } from 'lucide-react';
+import { ArrowLeft, BarChart2, Home, CheckCircle2, ClipboardList, XCircle, IndianRupee, Calendar, Columns, Grid, LayoutDashboard, UtensilsCrossed, Table, Ticket, MessageSquareWarning, Upload, Download, RotateCcw, Printer, Receipt, Eye, ChevronRight, FileText, Settings } from 'lucide-react';
+import { useSettings } from '../context/SettingsContext';
+import SettingsModal from './SettingsModal';
 import '../styles/owner.css';
 
 const OwnerAccess = () => {
+    const { t } = useSettings();
     const navigate = useNavigate();
+    const [showSettings, setShowSettings] = React.useState(false);
 
     const metrics = [
         {
-            title: "Orders Served",
+            title: t.served,
             value: "1",
             icon: <CheckCircle2 size={32} />,
             colorClass: "metric-served"
         },
         {
-            title: "Ongoing Orders",
+            title: t.ongoing,
             value: "1",
             icon: <ClipboardList size={32} />,
             colorClass: "metric-ongoing"
         },
         {
-            title: "Rejected Orders",
+            title: t.rejected,
             value: "0",
             icon: <XCircle size={32} />,
             colorClass: "metric-rejected"
         },
         {
-            title: "Total Revenue (₹)",
+            title: t.revenue,
             value: "36",
             icon: <IndianRupee size={32} />,
             colorClass: "metric-revenue"
@@ -49,22 +53,31 @@ const OwnerAccess = () => {
                         </Button>
                         <div className="dashboard-title-group d-flex align-items-center gap-2">
                             <BarChart2 size={24} className="dashboard-icon" />
-                            <h1 className="header-title">Owner Dashboard</h1>
+                            <h1 className="header-title">{t.ownerDashboard}</h1>
                         </div>
                     </div>
-                    <Button
-                        variant="link"
-                        onClick={() => navigate('/')}
-                        className="header-btn p-0"
-                    >
-                        <Home size={24} />
-                    </Button>
+                    <div className="d-flex align-items-center gap-2">
+                        <Button
+                            variant="link"
+                            onClick={() => setShowSettings(true)}
+                            className="header-btn p-0"
+                        >
+                            <Settings size={24} />
+                        </Button>
+                        <Button
+                            variant="link"
+                            onClick={() => navigate('/')}
+                            className="header-btn p-0"
+                        >
+                            <Home size={24} />
+                        </Button>
+                    </div>
                 </Container>
             </header>
 
             <main className="owner-main-content">
                 <Container>
-                    <h2 className="section-title">Key Metrics</h2>
+                    <h2 className="section-title">{t.keyMetrics}</h2>
 
                     <Row className="g-3">
                         {metrics.map((metric, index) => (
@@ -82,7 +95,7 @@ const OwnerAccess = () => {
 
                     {/* Revenue Breakdown Section */}
                     <div className="revenue-breakdown-card mt-4">
-                        <h3 className="breakdown-title">Revenue Breakdown</h3>
+                        <h3 className="breakdown-title">{t.revenueBreakdown}</h3>
 
                         <div className="breakdown-list">
                             <div className="breakdown-item">
@@ -91,7 +104,7 @@ const OwnerAccess = () => {
                                         <Calendar size={20} className="text-today" />
                                     </div>
                                     <div className="item-info">
-                                        <div className="item-name">Today</div>
+                                        <div className="item-name">{t.today}</div>
                                     </div>
                                 </div>
                                 <div className="item-right">
@@ -105,7 +118,7 @@ const OwnerAccess = () => {
                                         <Columns size={20} className="text-week" />
                                     </div>
                                     <div className="item-info">
-                                        <div className="item-name">This Week</div>
+                                        <div className="item-name">{t.thisWeek}</div>
                                         <div className="item-subtext">Avg. ₹0.00 per day</div>
                                     </div>
                                 </div>
@@ -120,7 +133,7 @@ const OwnerAccess = () => {
                                         <Grid size={20} className="text-month" />
                                     </div>
                                     <div className="item-info">
-                                        <div className="item-name">This Month</div>
+                                        <div className="item-name">{t.thisMonth}</div>
                                         <div className="item-subtext">Avg. ₹1.27 per day</div>
                                     </div>
                                 </div>
@@ -135,7 +148,7 @@ const OwnerAccess = () => {
                                         <LayoutDashboard size={20} className="text-avg" />
                                     </div>
                                     <div className="item-info">
-                                        <div className="item-name">Avg. Order Value</div>
+                                        <div className="item-name">{t.avgOrder}</div>
                                     </div>
                                 </div>
                                 <div className="item-right">
@@ -148,7 +161,7 @@ const OwnerAccess = () => {
                     {/* Management Actions Section */}
                     <div className="management-actions-section mt-5">
                         <div className="d-flex align-items-center justify-content-between mb-4">
-                            <h3 className="section-title mb-0">Management Actions</h3>
+                            <h3 className="section-title mb-0">{t.manageActions}</h3>
                             <div className="date-badge">Saturday, Feb 28</div>
                         </div>
 
@@ -170,25 +183,25 @@ const OwnerAccess = () => {
                             <Col xs={6}>
                                 <div className="action-card bg-manage-menu">
                                     <UtensilsCrossed size={28} className="action-icon" />
-                                    <span className="action-label">Manage Menu</span>
+                                    <span className="action-label">{t.manageMenu}</span>
                                 </div>
                             </Col>
                             <Col xs={6}>
                                 <div className="action-card bg-table-sessions">
                                     <Table size={28} className="action-icon" />
-                                    <span className="action-label">Table Sessions</span>
+                                    <span className="action-label">{t.tableSessions}</span>
                                 </div>
                             </Col>
                             <Col xs={6}>
                                 <div className="action-card bg-table-bookings">
                                     <Ticket size={28} className="action-icon" />
-                                    <span className="action-label">Table Bookings</span>
+                                    <span className="action-label">{t.book}</span>
                                 </div>
                             </Col>
                             <Col xs={6}>
                                 <div className="action-card bg-feedback">
                                     <MessageSquareWarning size={28} className="action-icon" />
-                                    <span className="action-label">Feedback Analytics</span>
+                                    <span className="action-label">{t.feedback}</span>
                                 </div>
                             </Col>
                             <Col xs={6}>
@@ -221,10 +234,10 @@ const OwnerAccess = () => {
                     {/* Recent Orders Section */}
                     <div className="recent-orders-card mt-5">
                         <div className="d-flex align-items-center justify-content-between mb-4">
-                            <h3 className="section-title mb-0">Recent Orders</h3>
+                            <h3 className="section-title mb-0">{t.recentOrders}</h3>
                             <div className="view-all-link">
                                 <Eye size={16} />
-                                <span>View All</span>
+                                <span>{t.viewOrd}</span>
                             </div>
                         </div>
 
@@ -270,6 +283,7 @@ const OwnerAccess = () => {
                     </div>
                 </Container>
             </main>
+            <SettingsModal show={showSettings} onHide={() => setShowSettings(false)} />
         </div>
     );
 };

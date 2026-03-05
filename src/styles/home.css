@@ -4,9 +4,9 @@
 
 /* Glass Navbar */
 .glass-nav {
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--glass-bg);
     backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid var(--glass-border);
     padding: 1rem 0;
     transition: all 0.4s ease;
 }
@@ -34,8 +34,8 @@
     justify-content: center;
     gap: 10px;
     padding: 20px !important;
-    background: white !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    background: var(--tea-card-bg) !important;
+    border: 1px solid var(--glass-border) !important;
     border-radius: 15px !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     transition: all 0.3s ease !important;
@@ -107,7 +107,7 @@
 }
 
 .menu-item-row:hover {
-    background: white !important;
+    background: var(--tea-light) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -131,9 +131,9 @@
 
 .table-select-item {
     padding: 12px 5px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--glass-border);
     border-radius: 8px;
-    background: white;
+    background: var(--tea-card-bg);
     font-weight: 600;
     transition: all 0.2s ease;
     display: flex;
@@ -187,7 +187,123 @@
     width: 100%;
 }
 
-/* Hero Section */
+.nav-settings-link {
+    transition: all 0.3s ease !important;
+}
+
+.nav-settings-link:hover {
+    color: var(--tea-primary) !important;
+}
+
+.nav-settings-link svg {
+    transition: transform 0.4s ease;
+}
+
+.nav-settings-link:hover svg {
+    transform: rotate(90deg);
+}
+
+/* Quick Access Bar */
+.settings-modal .modal-content {
+    border-radius: 24px;
+    border: none;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+}
+
+.ls-1 {
+    letter-spacing: 1px;
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.language-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lang-btn {
+    padding: 15px 20px;
+    border: 1px solid var(--glass-border);
+    background: var(--tea-card-bg);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.lang-btn:hover {
+    border-color: var(--tea-primary);
+    background: var(--tea-bg);
+}
+
+.lang-btn.active {
+    background: var(--tea-primary);
+    color: white;
+    border-color: var(--tea-primary);
+}
+
+.settings-item {
+    transition: all 0.2s ease;
+}
+
+.settings-item:hover {
+    background: #f1f3f5 !important;
+}
+
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.theme-btn {
+    border: 2px solid transparent;
+    background: transparent;
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    background: rgba(0, 0, 0, 0.03);
+    transform: translateY(-2px);
+}
+
+.theme-btn.active {
+    border-color: var(--tea-primary);
+    background: var(--tea-bg);
+}
+
+.theme-preview {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-accent {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    border-radius: 50% 0 0 0;
+}
+
+.tiny-text {
+    font-size: 10px;
+    font-weight: 600;
+    color: #444;
+    white-space: nowrap;
+}
+
 .hero-section {
     position: relative;
     height: 100vh;
@@ -302,13 +418,13 @@
 }
 
 .feature-card {
-    background: white;
+    background: var(--tea-card-bg);
     padding: 40px;
     border-radius: 30px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
     text-align: center;
     transition: all 0.5s ease;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--glass-border);
     height: 100%;
 }
 
@@ -339,7 +455,7 @@
 /* Category Section */
 .category-section {
     padding: 80px 0;
-    background: white;
+    background: var(--tea-bg);
 }
 
 .category-circle {
@@ -386,11 +502,11 @@
 .product-card {
     border-radius: 30px;
     overflow: hidden;
-    background: white;
+    background: var(--tea-card-bg);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
     margin-bottom: 30px;
     transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 1px solid rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--glass-border);
 }
 
 .product-card:hover {
@@ -427,7 +543,7 @@
 .section-header h2 {
     font-weight: 700;
     font-size: 2.5rem;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 .underline {
@@ -441,7 +557,7 @@
 /* Testimonials Section */
 .testimonials-section {
     padding: 100px 0;
-    background: white;
+    background: var(--tea-bg);
     position: relative;
     overflow: hidden;
 }
@@ -456,7 +572,7 @@
 }
 
 .testimonial-card:hover {
-    background: white;
+    background: var(--tea-card-bg);
     box-shadow: 0 15px 40px rgba(111, 78, 55, 0.1);
     transform: translateY(-5px);
 }
@@ -503,10 +619,10 @@
 
 /* Responsive Footer */
 footer {
-    background: var(--tea-dark);
+    background: var(--tea-footer-bg);
     color: white;
     padding: 150px 0 20px;
-    /* More top padding to account for newsletter banner */
+    border-top: 1px solid var(--glass-border);
 }
 
 .footer-logo {
@@ -558,7 +674,7 @@ footer {
 }
 
 .scanner-content {
-    background: white;
+    background: var(--tea-card-bg);
     width: 90%;
     max-width: 500px;
     border-radius: 20px;

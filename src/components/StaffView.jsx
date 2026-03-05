@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ClipboardList, ArrowLeft, Clock, RefreshCw, CheckCircle, Package, XCircle } from 'lucide-react';
+import { ClipboardList, ArrowLeft, Clock, RefreshCw, CheckCircle, Package, XCircle, Settings } from 'lucide-react';
+import { useSettings } from '../context/SettingsContext';
+import SettingsModal from './SettingsModal';
 import '../styles/staff.css';
 
 const StaffView = () => {
+    const { t } = useSettings();
     const [activeTab, setActiveTab] = useState('Pending');
-    const [showOrderView, setShowOrderView] = useState(false); // For mobile view navigation
+    const [showOrderView, setShowOrderView] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     const tabs = [
-        { name: 'Pending', icon: <Clock size={32} /> },
-        { name: 'Processing', icon: <RefreshCw size={32} /> },
-        { name: 'Prepared', icon: <CheckCircle size={32} /> },
-        { name: 'Completed', icon: <Package size={32} /> },
-        { name: 'Rejected', icon: <XCircle size={32} /> }
+        { name: t.pending, id: 'Pending', icon: <Clock size={32} /> },
+        { name: t.processing, id: 'Processing', icon: <RefreshCw size={32} /> },
+        { name: t.prepared, id: 'Prepared', icon: <CheckCircle size={32} /> },
+        { name: t.completed, id: 'Completed', icon: <Package size={32} /> },
+        { name: t.rejected, id: 'Rejected', icon: <XCircle size={32} /> }
     ];
+
 
     const handleCategoryClick = (tabName) => {
         setActiveTab(tabName);
@@ -46,11 +51,20 @@ const StaffView = () => {
                 )}
 
                 <h2 className="header-title m-0 py-3">
-                    <span className="v-desktop-tablet-inline">Kitchen Staff View</span>
+                    <span className="v-desktop-tablet-inline">{t.staffTitle}</span>
                     <span className="v-mobile-inline">
-                        {showOrderView ? `${activeTab} Orders` : 'Kitchen Staff View'}
+                        {showOrderView ? `${tabs.find(p => p.id === activeTab).name} Orders` : t.staffTitle}
                     </span>
                 </h2>
+
+                <Button
+                    variant="link"
+                    className={`settings-btn text-white position-absolute end-0 me-3 mt-2`}
+                    onClick={() => setShowSettings(true)}
+                >
+                    <Settings size={24} />
+                </Button>
+
 
 
                 {/* Tabs - Guaranteed visibility on Desktop and Tablet (> 576px) */}
@@ -59,9 +73,9 @@ const StaffView = () => {
                         {tabs.map((tab) => (
                             <Nav.Item key={tab.name}>
                                 <Nav.Link
-                                    className={`staff-tab-link ${activeTab === tab.name ? 'active' : ''}`}
+                                    className={`staff-tab-link ${activeTab === tab.id ? 'active' : ''}`}
                                     onClick={() => {
-                                        setActiveTab(tab.name);
+                                        setActiveTab(tab.id);
                                         setShowOrderView(true);
                                     }}
                                 >
@@ -98,10 +112,11 @@ const StaffView = () => {
                 <div className={`orders-view w-100 flex-column align-items-center justify-content-center h-100 ${showOrderView ? 'd-flex' : 'v-desktop-tablet-flex'}`}>
                     <div className="empty-state text-center">
                         <ClipboardList size={100} className="empty-icon mb-4" />
-                        <p className="empty-text">No {activeTab} orders</p>
+                        <p className="empty-text">{t.noOrders.replace('{status}', tabs.find(p => p.id === activeTab).name)}</p>
                     </div>
                 </div>
             </div>
+            <SettingsModal show={showSettings} onHide={() => setShowSettings(false)} />
         </div>
     );
 };

@@ -6,21 +6,24 @@ import StaffView from './components/StaffView';
 import ClientView from './components/ClientView';
 import Booking from './components/Booking';
 import OwnerAccess from './components/OwnerAccess';
+import { SettingsProvider } from './context/SettingsContext';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/staff" element={<StaffView />} />
-        <Route path="/client" element={<ClientView />} />
-        <Route path="/book-table" element={<Booking />} />
-        <Route path="/owner" element={<OwnerAccess />} />
-      </Routes>
-    </Router>
+    <SettingsProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/staff" element={<StaffView />} />
+          <Route path="/client" element={<ClientView />} />
+          <Route path="/book-table" element={<Booking />} />
+          <Route path="/owner" element={<OwnerAccess />} />
+        </Routes>
+      </Router>
+    </SettingsProvider>
   );
 }
 

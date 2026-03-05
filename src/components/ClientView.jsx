@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { Coffee, ArrowLeft, Table, ChevronDown, Edit3, Receipt } from 'lucide-react';
+import { Coffee, ArrowLeft, Table, ChevronDown, Edit3, Receipt, Settings } from 'lucide-react';
+import { useSettings } from '../context/SettingsContext';
+import SettingsModal from './SettingsModal';
 import '../styles/client.css';
 
 const ClientView = () => {
+    const { t } = useSettings();
     const navigate = useNavigate();
     const [selectedTable, setSelectedTable] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [viewingOrders, setViewingOrders] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     const tables = ['Table 1', 'Table 2', 'Table 3', 'Table 4', 'Table 5'];
 
@@ -26,26 +30,32 @@ const ClientView = () => {
                     </Button>
                     <div className="client-logo">
                         <Coffee className="header-icon" />
-                        <span>Client Portal</span>
+                        <span>{t.clientTitle}</span>
                     </div>
-                    <div className="header-spacer"></div>
+                    <Button
+                        variant="link"
+                        onClick={() => setShowSettings(true)}
+                        className="settings-btn text-white p-0"
+                    >
+                        <Settings className="header-icon" />
+                    </Button>
                 </Container>
             </header>
 
             <main className="client-main-content">
                 <Container className="d-flex flex-column align-items-center">
                     <div className="table-selector-card animate-fade-in">
-                        <h2 className="selector-title">Select Your Table Number</h2>
+                        <h2 className="selector-title">{t.selectTab}</h2>
 
                         <div className="selector-row">
                             <div className="custom-table-dropdown">
-                                <span className="dropdown-label">Table Number</span>
+                                <span className="dropdown-label">{t.tabNum}</span>
                                 <div
                                     className={`dropdown-select ${showDropdown ? 'open' : ''}`}
                                     onClick={() => setShowDropdown(!showDropdown)}
                                 >
                                     <Table size={20} className="icon-left" />
-                                    <span>{selectedTable || 'Select table'}</span>
+                                    <span>{selectedTable || t.selTab}</span>
                                     <ChevronDown size={20} className="icon-right" />
 
                                     {showDropdown && (
@@ -69,7 +79,7 @@ const ClientView = () => {
                             </div>
 
                             <Button className="btn-view-orders">
-                                View Orders
+                                {t.viewOrd}
                             </Button>
                         </div>
 
@@ -79,7 +89,7 @@ const ClientView = () => {
                             <Edit3 size={20} className="icon-left" />
                             <input
                                 type="text"
-                                placeholder="Manual Table Entry"
+                                placeholder={t.manualEnt}
                                 className="manual-input"
                                 value={selectedTable.startsWith('Table') ? '' : selectedTable}
                                 onChange={(e) => setSelectedTable(e.target.value)}
@@ -92,11 +102,12 @@ const ClientView = () => {
                             <div className="receipt-icon-wrapper mb-3">
                                 <Receipt size={100} strokeWidth={1} />
                             </div>
-                            <p className="empty-state-text">Enter your table number to view orders</p>
+                            <p className="empty-state-text">{t.enterTab}</p>
                         </div>
                     )}
                 </Container>
             </main>
+            <SettingsModal show={showSettings} onHide={() => setShowSettings(false)} />
         </div>
     );
 };

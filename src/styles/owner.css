@@ -1,7 +1,7 @@
 .owner-dashboard-container {
     min-height: 100vh;
     background-color: var(--tea-bg);
-    color: var(--tea-dark);
+    color: var(--tea-text);
     font-family: 'Poppins', sans-serif;
 }
 
@@ -50,7 +50,7 @@
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 25px;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     letter-spacing: -0.5px;
     position: relative;
     display: inline-block;
@@ -69,7 +69,7 @@
 
 /* Metric Card Styling */
 .metric-card {
-    background-color: var(--tea-light);
+    background-color: var(--tea-card-bg);
     border-radius: 24px;
     padding: 30px 20px;
     text-align: center;
@@ -80,7 +80,7 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--glass-border);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
@@ -103,13 +103,13 @@
     font-size: 2.2rem;
     font-weight: 800;
     line-height: 1;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 .metric-label {
     font-size: 0.9rem;
     font-weight: 600;
-    color: rgba(43, 27, 23, 0.6);
+    color: var(--tea-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -154,17 +154,17 @@
 /* Dashboard Cards (Revenue & Orders) */
 .revenue-breakdown-card,
 .recent-orders-card {
-    background-color: var(--tea-light);
+    background-color: var(--tea-card-bg);
     border-radius: 24px;
     padding: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--glass-border);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
 }
 
 .breakdown-title {
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     margin-bottom: 25px;
 }
 
@@ -173,7 +173,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 18px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .breakdown-item:last-child {
@@ -197,13 +197,13 @@
 
 .item-name {
     font-weight: 700;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     font-size: 1.05rem;
 }
 
 .item-subtext {
     font-size: 0.8rem;
-    color: rgba(43, 27, 23, 0.5);
+    color: var(--tea-text-muted);
 }
 
 .item-value {
@@ -261,14 +261,14 @@
 }
 
 .order-item-row {
-    background-color: var(--tea-bg);
+    background-color: var(--tea-light);
     border-radius: 20px;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: all 0.2s ease;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--glass-border);
 }
 
 .order-item-row:hover {
@@ -299,7 +299,7 @@
 .table-name {
     font-weight: 800;
     font-size: 1.1rem;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 .billing-status {
@@ -353,8 +353,8 @@
 }
 
 .today-orders-box {
-    background-color: var(--tea-light);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: var(--tea-card-bg);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 25px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
@@ -363,7 +363,7 @@
 .orders-box-title {
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--tea-dark);
+    color: var(--tea-text);
     margin-bottom: 20px;
 }
 
@@ -413,7 +413,7 @@
 
 /* Action Cards */
 .action-card {
-    background-color: var(--tea-light);
+    background-color: var(--tea-card-bg);
     border-radius: 24px;
     padding: 25px;
     text-align: center;
@@ -425,7 +425,7 @@
     height: 160px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--glass-border);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
 }
 
@@ -445,7 +445,7 @@
 .action-label {
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--tea-dark);
+    color: var(--tea-text);
 }
 
 /* Action Card Color Varieties */
