@@ -81,7 +81,7 @@ const OwnerAccess = () => {
 
                     <Row className="g-3">
                         {metrics.map((metric, index) => (
-                            <Col xs={6} key={index}>
+                            <Col xs={6} md={6} key={index}>
                                 <div className={`metric-card ${metric.colorClass}`}>
                                     <div className="metric-icon-wrapper">
                                         {metric.icon}

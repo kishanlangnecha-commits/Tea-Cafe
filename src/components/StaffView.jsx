@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ClipboardList, ArrowLeft, Clock, RefreshCw, CheckCircle, Package, XCircle, Settings } from 'lucide-react';
+import { ClipboardList, ArrowLeft, Clock, RefreshCw, CheckCircle, Package, XCircle } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
-import SettingsModal from './SettingsModal';
 import '../styles/staff.css';
 
 const StaffView = () => {
     const { t } = useSettings();
     const [activeTab, setActiveTab] = useState('Pending');
     const [showOrderView, setShowOrderView] = useState(false);
-    const [showSettings, setShowSettings] = useState(false);
 
     const tabs = [
         { name: t.pending, id: 'Pending', icon: <Clock size={32} /> },
@@ -57,13 +55,6 @@ const StaffView = () => {
                     </span>
                 </h2>
 
-                <Button
-                    variant="link"
-                    className={`settings-btn text-white position-absolute end-0 me-3 mt-2`}
-                    onClick={() => setShowSettings(true)}
-                >
-                    <Settings size={24} />
-                </Button>
 
 
 
@@ -116,7 +107,6 @@ const StaffView = () => {
                     </div>
                 </div>
             </div>
-            <SettingsModal show={showSettings} onHide={() => setShowSettings(false)} />
         </div>
     );
 };

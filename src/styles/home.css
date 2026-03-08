@@ -672,7 +672,7 @@
 
 /* Responsive Footer */
 footer {
-    background: var(--tea-footer-bg);
+    background: linear-gradient(135deg, var(--tea-primary), var(--tea-primary-dark, #1a1a1a));
     color: white;
     padding: 150px 0 20px;
     border-top: 1px solid var(--glass-border);

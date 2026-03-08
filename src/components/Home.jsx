@@ -17,6 +17,7 @@ const Home = () => {
     const [selectedOrderTable, setSelectedOrderTable] = useState('');
     const [showSettings, setShowSettings] = useState(false);
     const [generatedQR, setGeneratedQR] = useState(null);
+    const [navExpanded, setNavExpanded] = useState(false);
 
     const [cart, setCart] = useState([]);
     const [stream, setStream] = useState(null);
@@ -41,6 +42,9 @@ const Home = () => {
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
+            if (navExpanded) {
+                setNavExpanded(false);
+            }
         };
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -49,7 +53,7 @@ const Home = () => {
                 stream.getTracks().forEach(track => track.stop());
             }
         };
-    }, [stream]);
+    }, [stream, navExpanded]);
 
     const startCamera = async () => {
         try {
@@ -129,20 +133,26 @@ const Home = () => {
     return (
         <div className="home-container">
             {/* Navbar */}
-            <Navbar expand="lg" fixed="top" className={`glass-nav ${scrolled ? 'shadow-sm' : ''}`}>
+            <Navbar 
+                expand="lg" 
+                fixed="top" 
+                expanded={navExpanded}
+                onToggle={setNavExpanded}
+                className={`glass-nav ${scrolled ? 'shadow-sm' : ''}`}
+            >
                 <Container>
-                    <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2" style={{ color: 'var(--tea-primary)', fontWeight: 'bold', fontSize: '1.5rem' }}>
+                    <Navbar.Brand as={Link} to="/" onClick={() => setNavExpanded(false)} className="d-flex align-items-center gap-2" style={{ color: 'var(--tea-primary)', fontWeight: 'bold', fontSize: '1.5rem' }}>
                         <Coffee size={32} />
                         Tea Cafe
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ms-auto">
-                            <Nav.Link href="#contact">{t.contact}</Nav.Link>
-                            <Nav.Link className="d-flex align-items-center gap-1 nav-settings-link" onClick={() => setShowSettings(true)} style={{ cursor: 'pointer' }}>
+                        <Nav className="ms-auto" onClick={() => setNavExpanded(false)}>
+                            <Nav.Link href="#contact" onClick={() => setNavExpanded(false)}>{t.contact}</Nav.Link>
+                            <Nav.Link className="d-flex align-items-center gap-1 nav-settings-link" onClick={() => { setShowSettings(true); setNavExpanded(false); }} style={{ cursor: 'pointer' }}>
                                 <Settings size={18} /> {t.settings}
                             </Nav.Link>
-                            <Button as={Link} to="/login" variant="outline-primary" className="ms-lg-3 rounded-pill px-4 btn-outline-tea">
+                            <Button as={Link} to="/login" variant="outline-primary" onClick={() => setNavExpanded(false)} className="ms-lg-3 rounded-pill px-4 btn-outline-tea">
                                 {t.login}
                             </Button>
                         </Nav>

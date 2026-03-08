@@ -2,9 +2,8 @@
 import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Armchair, Star, Keyboard, CheckCircle, Settings } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Armchair, Star, Keyboard, CheckCircle } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
-import SettingsModal from './SettingsModal';
 import '../styles/booking.css';
 
 const Booking = () => {
@@ -20,7 +19,6 @@ const Booking = () => {
     const [isGuestDropdownOpen, setIsGuestDropdownOpen] = useState(false);
     const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
     const [isBooked, setIsBooked] = useState(false);
-    const [showSettings, setShowSettings] = useState(false);
 
     const timeSlots = [
         "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
@@ -141,13 +139,6 @@ const Booking = () => {
                     <ArrowLeft className="back-icon" size={24} onClick={() => navigate(-1)} />
                     <h1>{t.bookTitle}</h1>
                 </div>
-                <Button
-                    variant="link"
-                    onClick={() => setShowSettings(true)}
-                    className="settings-btn text-white p-0"
-                >
-                    <Settings className="header-icon" />
-                </Button>
             </header>
 
             <Container className={`booking-container ${isBooked ? 'success-view' : ''}`}>
@@ -489,7 +480,6 @@ const Booking = () => {
                     </div>
                 </div>
             )}
-            <SettingsModal show={showSettings} onHide={() => setShowSettings(false)} />
         </div>
     );
 };

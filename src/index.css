@@ -10,7 +10,7 @@
   --tea-card-bg: #ffffff;
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.5);
-  --tea-footer-bg: #2B1B17;
+  --tea-footer-bg: var(--tea-primary);
 }
 
 [data-theme='dark'] {
@@ -24,7 +24,7 @@
   --glass-border: rgba(255, 255, 255, 0.1);
   --tea-accent: #ff6b6b;
   --btn-text: #ffffff;
-  --tea-footer-bg: #0a0a0a;
+  --tea-footer-bg: var(--tea-primary-dark);
 }
 
 [data-theme='dark'] .btn-link,
